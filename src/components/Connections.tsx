@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Network from "./Network";
+import styles from "../modules/Connections.module.css";
 
-type Network = {
-  name: string;
-  obj: object;
-};
+interface IProps {
+  activity: string;
+}
 
-const Connections: React.FC = () => {
+const Connections: React.FC<IProps> = ({ activity }) => {
   const [isLoading, setIsLoading]: [boolean, (isLoading: boolean) => void] =
     useState<boolean>(false);
   const [error, setError]: [string, (error: string) => void] = useState("");
@@ -16,9 +17,7 @@ const Connections: React.FC = () => {
   useEffect(() => {
     axios("https://app.subsocial.network/subid/api/v1/chains/properties")
       .then((response: any) => {
-        // console.log(response.data);
         setIsLoading(true);
-        // setPhotos(response.data.photos);
         setNetworks(response.data);
       })
       .catch((error: any) => {
@@ -26,24 +25,25 @@ const Connections: React.FC = () => {
         setError(error);
       })
       .finally(() => {
-        // setFirstCall(false);
-        // for (const [key, value] of Object.entries(networks)) {
-        //   console.log(`${key}: ${JSON.stringify(value)}`);
-        // }
         setIsLoading(false);
-        // console.log(photos);
       });
   }, []);
-  // console.log(networks)`
 
   return (
     <div>
       {error && <div>{error}</div>}
       {isLoading && <div>Loading...</div>}
-      {/* {networks.map((network: any) => <div key={network.name}>{network.name}</div>)} */}
-      {!isLoading && Object.entries(networks).map(([k, v], index) => (
-        <div key={index}>{`${k}: ${JSON.stringify(v)}`}</div>
-      ))}
+      {!isLoading && (
+        <div className={styles.networks}>
+          {Object.entries(networks).map(
+            ([k, v], index) =>
+              v.tokenSymbol &&
+              v.tokenDecimals && (
+                <Network key={index + k} _name={v.name} _icon={v.icon} activity={activity} />
+              )
+          )}
+        </div>
+      )}
     </div>
   );
 };
