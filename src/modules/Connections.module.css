@@ -3,3 +3,27 @@
   grid-gap: 5px;
   grid-template-columns: repeat(8, 1fr);
 }
+
+@media only screen and (max-width: 1500px) {
+  .networks {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .networks {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .networks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .networks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

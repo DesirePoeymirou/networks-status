@@ -42,8 +42,17 @@ const Network: React.FC<IProps> = ({ _name, _icon, activity }) => {
         src={`https://sub.id/images/${_icon}`}
         alt={_name}
       />
-      <h5>{_name}</h5>
-      <h6>{networkStatus ? "Connected" : "Disonnected"}</h6>
+      <div className={styles.info}>
+        <div>{_name}</div>
+        <div className={styles.footer}>
+          <div>{networkStatus ? "Connected" : "Disonnected"}</div>
+          <div
+            className={`${styles.statusSquare} ${
+              networkStatus ? styles.squareConnected : styles.squareDisconnected
+            }`}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 };

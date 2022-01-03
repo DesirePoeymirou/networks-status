@@ -17,7 +17,7 @@ const App: React.FC = () => {
       <div className="header">
         <div>Connections</div>
         <select value={filter} onChange={(e) => handleSelect(e)}>
-          <option disabled selected>Select activity</option>
+          <option disabled defaultValue="">Select activity</option>
           <option value="all">All</option>
           <option value="connected">Connected</option>
           <option value="disconnected">Disconnected</option>
