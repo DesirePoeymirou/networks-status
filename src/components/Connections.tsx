@@ -32,14 +32,20 @@ const Connections: React.FC<IProps> = ({ activity }) => {
   return (
     <div>
       {error && <div>{error}</div>}
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && (
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
         <div className={styles.networks}>
           {Object.entries(networks).map(
             ([k, v], index) =>
               v.tokenSymbol &&
               v.tokenDecimals && (
-                <Network key={index + k} _name={v.name} _icon={v.icon} activity={activity} />
+                <Network
+                  key={index + k}
+                  _name={v.name}
+                  _icon={v.icon}
+                  activity={activity}
+                />
               )
           )}
         </div>

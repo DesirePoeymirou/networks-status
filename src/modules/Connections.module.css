@@ -1,24 +1,18 @@
 .networks {
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 10px;
   grid-template-columns: repeat(8, 1fr);
 }
 
-@media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 1200px) {
   .networks {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 900px) {
   .networks {
     grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .networks {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
