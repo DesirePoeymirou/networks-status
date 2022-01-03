@@ -4,7 +4,7 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [filter, setFilter]: [string, (filter: string) => void] =
-    useState("all");
+    useState("");
 
   const handleSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void = (
     e: React.ChangeEvent<HTMLSelectElement>
@@ -24,7 +24,7 @@ const App: React.FC = () => {
         </select>
       </div>
 
-      <Connections activity={filter}/>
+      <Connections activity={filter} />
     </div>
   );
 };

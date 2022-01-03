@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: solid 1px #000;
   width: 150px;
   height: 140px;
   border-radius: .25em;
@@ -21,4 +20,8 @@
 
 .disconnected {
   background-color: rgba(255,0,0,0.5);
+}
+
+.hide {
+  display: none;
 }

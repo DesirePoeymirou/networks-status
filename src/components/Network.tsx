@@ -14,7 +14,9 @@ const Network: React.FC<IProps> = ({ _name, _icon, activity }) => {
   const [error, setError]: [string, (error: string) => void] = useState("");
 
   useEffect(() => {
-    axios(`https://app.subsocial.network/subid/api/v1/check/${_name}`)
+    axios(
+      `https://app.subsocial.network/subid/api/v1/check/${_name.toLowerCase()}`
+    )
       .then((response: any) => {
         setNetworkStatus(response.data);
       })
@@ -26,14 +28,23 @@ const Network: React.FC<IProps> = ({ _name, _icon, activity }) => {
   }, []);
 
   return (
-    <div className={`${styles.network} ${networkStatus ? styles.connected : styles.disconnected}`}>
+    // {activity === 'connected' || activity === 'disconnected' &&
+    <div
+      className={`${
+        ((activity === "connected" && !networkStatus) ||
+          (activity === "disconnected" && networkStatus)) &&
+        styles.hide
+      } ${styles.network} ${
+        networkStatus ? styles.connected : styles.disconnected
+      }`}
+    >
       <img
         className={styles.img}
         src={`https://sub.id/images/${_icon}`}
         alt={_name}
       />
       <h5>{_name}</h5>
-      <h6>{networkStatus ? 'Connected' : 'Disonnected'}</h6>
+      <h6>{networkStatus ? "Connected" : "Disonnected"}</h6>
     </div>
   );
 };
