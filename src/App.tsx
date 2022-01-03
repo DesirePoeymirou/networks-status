@@ -15,16 +15,17 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className="header">
-        <h2>Connections</h2>
+        <div>Connections</div>
         <select value={filter} onChange={(e) => handleSelect(e)}>
-          <option value="">Select activity</option>
+          <option disabled selected>Select activity</option>
           <option value="all">All</option>
           <option value="connected">Connected</option>
           <option value="disconnected">Disconnected</option>
         </select>
       </div>
-
-      <Connections activity={filter} />
+      <main>
+        <Connections activity={filter} />
+      </main>
     </div>
   );
 };

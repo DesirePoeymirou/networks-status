@@ -28,7 +28,6 @@ const Network: React.FC<IProps> = ({ _name, _icon, activity }) => {
   }, []);
 
   return (
-    // {activity === 'connected' || activity === 'disconnected' &&
     <div
       className={`${
         ((activity === "connected" && !networkStatus) ||

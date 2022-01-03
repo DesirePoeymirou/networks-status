@@ -4,14 +4,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-style: tabular-nums;
 }
 
 .App {
-  /* max-width: 90%; */
+  max-width: 95%;
+  margin: 5px auto;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+}
+
+.header div {
+  font-weight: bold;
+}
+
+.header select {
+  outline: none;
+  text-align: center;
+  padding: 5px;
+  font-size: 12px;
+  background-color: #d9d9d9;
+  color: #eb2f96;
+  border-radius: 5px;
+  border: solid 1px #eb2f96;
 }
