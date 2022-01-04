@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "../modules/Network.module.css";
+import { REFRESH_STATUS } from "../constants";
+import styles from "../styles/Network.module.css";
 
 interface IProps {
   _name: string;
@@ -9,33 +10,34 @@ interface IProps {
 }
 
 const Network: React.FC<IProps> = ({ _name, _icon, activity }) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [networkStatus, setNetworkStatus] = useState<boolean>(false);
-  const [error, setError]: [string, (error: string) => void] = useState("");
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      axios(
-        `https://app.subsocial.network/subid/api/v1/check/${_name.toLowerCase()}`
-      )
-        .then((response: any) => {
-          setLoading(true);
-          setNetworkStatus(response.data);
-        })
-        .catch((_error: any) => {
-          console.log("Error fetching data: ", error);
-          setError(_error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }, 300000);
+      load();
+    }, REFRESH_STATUS);
     return () => clearInterval(interval);
   }, []);
 
+  const load = async () => {
+    try {
+      const res = await axios.get(
+        `https://app.subsocial.network/subid/api/v1/check/${_name.toLowerCase()}`
+      );
+      setNetworkStatus(res.data);
+    } catch (_error: any) {
+      setError(_error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div>
-      {loading ? (
+      {error && <div>{error}</div>}
+      {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div

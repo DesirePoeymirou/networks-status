@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Connections from "./components/Connections";
-import "./App.css";
+import "./styles/App.css";
 
 const App: React.FC = () => {
   const [filter, setFilter]: [string, (filter: string) => void] =

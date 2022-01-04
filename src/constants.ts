@@ -1,0 +1,1 @@
+export const REFRESH_STATUS: number = 5000
